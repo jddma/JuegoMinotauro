@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -20,7 +21,8 @@ public class Board extends JPanel implements ActionListener {
     private final int DELAY = 10;
     private final int B_WIDTH = 1024;
     private final int B_HEIGHT = 512;
-
+    private Rectangle muro=new Rectangle(0,0,30,30);
+    
     public Board() throws Exception {
        initBoard();
     }
@@ -49,12 +51,14 @@ public class Board extends JPanel implements ActionListener {
        g2d.setColor(Color.RED);
        g2d.fillOval(circle.getX(), circle.getY(), circle.getWidth(), circle.getHeight());
 
-       
+       Graphics2D wall = (Graphics2D) g;
+       wall.setColor(Color.BLUE);
+       wall.fillRect(muro.x, muro.y , muro.width, muro.height);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        circle.move();
+        circle.move(muro);
         repaint();  
     }
         

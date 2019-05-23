@@ -1,8 +1,12 @@
 package juego;
 
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
+
+
 public class Circle extends Sprite{
+	
     private int dx;
     private int dy;
     
@@ -10,9 +14,12 @@ public class Circle extends Sprite{
         super(x, y,width,height);
     }
    
-    public void move() {
+    public void move(Rectangle muro) {  	
+    	if(! getBounds().intersects(muro))
+    	{
         x += dx;
         y += dy;
+    	}
     }
 
     public void keyPressed(KeyEvent e) {
@@ -21,20 +28,20 @@ public class Circle extends Sprite{
             System.out.println("VK_SPACE"); //Se  va usar posteriormente 
         }
         
-        if (key == KeyEvent.VK_LEFT) {
+        if (key == KeyEvent.VK_LEFT && dy==0) {
             dx = -5;
         }
 
-        if (key == KeyEvent.VK_RIGHT) {
+        if (key == KeyEvent.VK_RIGHT && dy==0) {
            dx = 5;
           
         }
 
-        if (key == KeyEvent.VK_UP) {
+        if (key == KeyEvent.VK_UP && dx==0) {
             dy = -5;
         }
 
-        if (key == KeyEvent.VK_DOWN) {
+        if (key == KeyEvent.VK_DOWN && dx==0) {
             dy = 5;
         }
     }
