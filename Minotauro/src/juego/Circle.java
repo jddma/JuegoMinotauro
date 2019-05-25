@@ -3,8 +3,6 @@ package juego;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
-
-
 public class Circle extends Sprite{
 	
     private int dx;
@@ -13,13 +11,73 @@ public class Circle extends Sprite{
     public Circle(int x, int y, int width, int height) throws Exception {
         super(x, y,width,height);
     }
-   
-    public void move(Rectangle muro) {  	
-    	if(! getBounds().intersects(muro))
+    
+    private boolean VerificarChoque(Muro[]muros,int mov) {
+    	int new_x=x,new_y=y;
+    	switch(mov)
     	{
-        x += dx;
-        y += dy;
+    		case 0:
+    			new_y+=5;
+    			break;
+    			
+    		case 1:
+    			new_y-=5;
+    			break;
+    			
+    		case 2:
+    			new_x+=5;
+    			break;
+    			
+    		case 3:
+    			new_x-=5;
+    			break;
     	}
+    	
+    	Rectangle new_position=new Rectangle(new_x,new_y,30,30);
+    	for(int i=0; i<muros.length; i++)
+    		if( new_position.intersects(muros[i].GetBounds()))
+    			return true;  		
+    	
+    	return false;
+    }
+   
+    public void move(Muro[]muros) {  	
+    	//if(! getBounds().intersects(muro))
+    	if(dy!=0)
+    	{
+    		switch(dy)
+    		{
+    			case 5:
+    				if(! VerificarChoque(muros,0))//abajo
+    					y+=dy;
+    				
+    				break;
+    				
+    			case -5:
+    				if(! VerificarChoque(muros,1))//arriba
+    					y+=dy;
+    				
+    				break;
+    		}
+    	}
+    	if(dx!=0)
+    	{
+    		switch(dx)
+    		{
+    			case 5:
+    				if(! VerificarChoque(muros,2))//derecha
+    					x+=dx;
+    				
+    				break;
+    				
+    			case -5:
+    				if(! VerificarChoque(muros,3))//arriba
+    					x+=dx;
+    				
+    				break;
+    		}
+    	}
+    	
     }
 
     public void keyPressed(KeyEvent e) {
@@ -46,8 +104,7 @@ public class Circle extends Sprite{
         }
     }
 
-    public void keyReleased(KeyEvent e) {
-    
+    public void keyReleased(KeyEvent e) {   
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_LEFT) {
             dx = 0;

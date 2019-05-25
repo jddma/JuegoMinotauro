@@ -1,5 +1,7 @@
 package juego;
 
+import java.awt.Rectangle;
+
 public class Muro {
 
 	protected int x;
@@ -12,6 +14,10 @@ public class Muro {
     	this.y=y;
     	this.width=width;
     	this.height=height;
+    }
+    
+    public Rectangle GetBounds() {
+    	return new Rectangle(x,y,width,height);
     }
 	
 }

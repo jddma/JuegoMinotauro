@@ -14,14 +14,12 @@ import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
     //Permite lanzar constantemente eventos de tipo ActionListener.
-    private Timer timer;
-    
+    private Timer timer;    
     private Circle circle;
     private Muro[]muros;
     private final int DELAY = 10;
     private final int B_WIDTH = 1024;
     private final int B_HEIGHT = 512;
-    private Rectangle muro=new Rectangle(0,0,30,30);
     
     public Board() throws Exception {
        initBoard();
@@ -36,7 +34,7 @@ public class Board extends JPanel implements ActionListener {
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
        
         //Objetos del juego.
-        circle = new Circle(40,300,30,30);
+        circle = new Circle(0,0,30,30);
         
         //El constructor indica cada cuanto tiempo debe lanzar un ActionListener
         timer = new Timer(DELAY, this);
@@ -44,21 +42,41 @@ public class Board extends JPanel implements ActionListener {
     }
 
 
-    @Override
+    private Muro[] DefinirMuros() {
+    	Muro[]muros=new Muro[6];
+    	muros[0]=new Muro(30,10,5,470);
+    	muros[1]=new Muro(30,10,980,5);
+    	muros[2]=new Muro(980+30,10,5,470);
+    	muros[3]=new Muro(30,480,460,5);
+    	muros[4]=new Muro(530,480,485,5);
+    	muros[5]=new Muro(490,250,5,235);
+    	
+    	return muros;
+    }
+    
     public void paintComponent(Graphics g) {
        super.paintComponent(g);
        Graphics2D g2d = (Graphics2D) g;     
        g2d.setColor(Color.RED);
        g2d.fillOval(circle.getX(), circle.getY(), circle.getWidth(), circle.getHeight());
-
+       /*
        Graphics2D wall = (Graphics2D) g;
        wall.setColor(Color.BLUE);
-       wall.fillRect(muro.x, muro.y , muro.width, muro.height);
+       wall.fillRect(muro.x, muro.y , muro.width, muro.height);*/
+       
+       muros=DefinirMuros();
+       Graphics2D[]wall=new Graphics2D[muros.length];
+       for(int i=0; i<muros.length; i++)
+       {
+    	   wall[i]= (Graphics2D) g;
+           wall[i].setColor(Color.BLUE);
+           wall[i].fillRect(muros[i].x, muros[i].y , muros[i].width, muros[i].height);
+       }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        circle.move(muro);
+        circle.move(muros);
         repaint();  
     }
         

@@ -13,7 +13,7 @@ public class Game extends JFrame{
         setResizable(false);
         pack();
         
-        setTitle("minotauro");
+        setTitle("Minotauro");
         setLocationRelativeTo(null);        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
