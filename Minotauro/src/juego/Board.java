@@ -17,7 +17,7 @@ public class Board extends JPanel implements ActionListener {
     private Timer timer;    
     private Circle circle;
     private Muro[]muros;
-    private final int DELAY = 10;
+    private final int DELAY = 15;
     private final int B_WIDTH = 1024;
     private final int B_HEIGHT = 512;
     
@@ -42,16 +42,11 @@ public class Board extends JPanel implements ActionListener {
     }
 
 
-    private Muro[] DefinirMuros() {
-    	Muro[]muros=new Muro[6];
-    	muros[0]=new Muro(30,10,5,470);
-    	muros[1]=new Muro(30,10,980,5);
-    	muros[2]=new Muro(980+30,10,5,470);
-    	muros[3]=new Muro(30,480,460,5);
-    	muros[4]=new Muro(530,480,485,5);
-    	muros[5]=new Muro(490,250,5,235);
-    	
-    	return muros;
+    private Muro[] DefinirMuros() {	   	
+    	return new Muro[]{new Muro(30,10,5,470),new Muro(30,10,980,5),new Muro(980+30,10,5,470),new Muro(30,480,425,5),new Muro(490,480,525,5),
+			 new Muro(450,297,5,185),new Muro(490,257,5,225),new Muro(445,257,50,5),new Muro(400,297,50,5),new Muro(445,210,5,50),
+			 new Muro(400,260,5,40),new Muro(75,220,375,5),new Muro(75,220,5,225),new Muro(75,445,340,5),new Muro(280,260,120,5),
+			 new Muro(280,260,5,70),new Muro(280,330,50,5),new Muro(240,220,5,150)};
     }
     
     public void paintComponent(Graphics g) {
