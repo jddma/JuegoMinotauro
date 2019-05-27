@@ -42,10 +42,9 @@ public class Circle extends Sprite{
     }
    
     public void move(Muro[]muros) {  	
-    	//if(! getBounds().intersects(muro))
     	System.out.println("x:" +x+
     						"\n" + "y:" +y+
-    						"\n" +"-----------------");
+    						"\n" + "-----------------");
     	if(dy!=0)
     	{
     		switch(dy)
