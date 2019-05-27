@@ -34,7 +34,7 @@ public class Board extends JPanel implements ActionListener {
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
        
         //Objetos del juego.
-        circle = new Circle(455,475,30,30);
+        circle = new Circle(305,50,30,30);
         
         //El constructor indica cada cuanto tiempo debe lanzar un ActionListener
         timer = new Timer(DELAY, this);
@@ -48,7 +48,11 @@ public class Board extends JPanel implements ActionListener {
 			 new Muro(400,260,5,40),new Muro(75,220,375,5),new Muro(75,220,5,225),new Muro(75,445,340,5),new Muro(280,260,120,5),
 			 new Muro(280,265,5,70),new Muro(280,335,50,5),new Muro(240,220,5,150),new Muro(240,370,130,5),new Muro(365,300,5,70),
 			 new Muro(325,300,40,5),new Muro(365,335,45,5),new Muro(405,370,5,40),new Muro(405,370,45,5),new Muro(210,405,195,5),
-			 new Muro(205,255,5,155),new Muro(170,225,5,150),new Muro(170,40,50,5)};
+			 new Muro(205,255,5,155),new Muro(170,225,5,150),new Muro(140,405,65,5),new Muro(135,255,5,155),new Muro(80,305,25,5),
+			 new Muro(110,350,25,5),new Muro(30,185,385,5),new Muro(445,200,5,20),new Muro(445,200,60,5),new Muro(410,160,5,25),
+			 new Muro(410,160,20,5),new Muro(460,45,5,160),new Muro(65,45,395,5),new Muro(375,125,90,5),new Muro(375,125,5,30),
+			 new Muro(335,85,5,105),new Muro(335,85,90,5),new Muro(300,45,5,110),new Muro(270,150,30,5),new Muro(235,80,5,105),
+			 new Muro(240,110,30,5),new Muro(270,75,30,5),new Muro(200,50,5,75),new Muro(145,120,60,5),new Muro(120,85,40,5)};
     }
     
     public void paintComponent(Graphics g) {
@@ -71,19 +75,16 @@ public class Board extends JPanel implements ActionListener {
        }
     }
 
-    @Override
     public void actionPerformed(ActionEvent e) {
         circle.move(muros);
         repaint();  
     }
         
     private class TAdapter extends KeyAdapter {
-        @Override
         public void keyReleased(KeyEvent e) {
             circle.keyReleased(e);
         }
 
-        @Override
         public void keyPressed(KeyEvent e) {
             circle.keyPressed(e);
         }
