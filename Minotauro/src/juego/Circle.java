@@ -35,7 +35,7 @@ public class Circle extends Sprite{
     	
     	Rectangle new_position=new Rectangle(new_x,new_y,30,30);
     	for(int i=0; i<muros.length; i++)
-    		if( new_position.intersects(muros[i].GetBounds()))
+    		if( new_position.intersects(muros[i].GetBounds()) || new_position.x<0 || new_position.x>1024 || new_position.y<0 || new_position.y>487)
     			return true;  		
     	
     	return false;

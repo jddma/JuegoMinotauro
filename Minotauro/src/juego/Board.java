@@ -101,8 +101,7 @@ public class Board extends JPanel implements ActionListener {
     		{
 				ex.printStackTrace();
 			}
-    	}
-    		
+    	}   		
     	else
 	        circle.move(muros);
 

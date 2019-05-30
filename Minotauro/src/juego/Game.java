@@ -9,6 +9,7 @@ public class Game extends JFrame{
         setResizable(false);
         pack();
         
+        setDefaultLookAndFeelDecorated(true);
         setTitle("Minotauro");
         setLocationRelativeTo(null);        
         setDefaultCloseOperation( EXIT_ON_CLOSE);
